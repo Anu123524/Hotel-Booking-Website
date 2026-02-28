@@ -5,9 +5,9 @@
     --text-dark: #2c3e50;
     --text-light: #ecf0f1;
     --bg-light: #f9f9f9;
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    --white: #ffffff;
+    --shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    --transition: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -26,37 +26,51 @@ body {
 
 h1,
 h2,
-h3,
-.brand {
+h3 {
     font-family: 'Playfair Display', serif;
 }
 
-/* Navbar */
+/* Base Animations */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s var(--transition);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Navbar: Desktop Style (Laptop Feel) */
 nav {
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    padding: 20px 50px;
+    padding: 25px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: transparent;
-    transition: var(--transition);
+    transition: all 0.5s var(--transition);
 }
 
 nav.scrolled {
-    background: white;
-    box-shadow: var(--shadow);
-    padding: 15px 50px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 15px 5%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
 .nav-brand {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: white;
+    color: var(--white);
     text-decoration: none;
     letter-spacing: 2px;
+    transition: color 0.3s;
+    white-space: nowrap;
 }
 
 nav.scrolled .nav-brand {
@@ -65,129 +79,223 @@ nav.scrolled .nav-brand {
 
 .nav-links {
     display: flex;
-    gap: 30px;
+    gap: 20px;
     list-style: none;
+    align-items: center;
 }
 
 .nav-links a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
     font-weight: 500;
-    font-size: 0.9rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    transition: var(--transition);
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 5px;
+    white-space: nowrap;
 }
 
 nav.scrolled .nav-links a {
     color: var(--text-dark);
 }
 
-.nav-links a:hover {
-    color: var(--accent-color);
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    transition: width 0.3s var(--transition);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('../images/hero.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('../images/hero.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: white;
+    color: var(--white);
+    padding: 0 5%;
 }
 
 .hero h1 {
-    font-size: 4.5rem;
-    margin-bottom: 20px;
-    animation: fadeInUp 1s ease;
+    font-size: 4rem;
+    margin-bottom: 15px;
+    opacity: 0;
+    animation: fadeInDown 1.2s forwards 0.5s;
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 40px;
     max-width: 600px;
+    opacity: 0;
+    animation: fadeInUp 1.2s forwards 0.8s;
 }
 
 .btn-premium {
-    padding: 15px 40px;
-    background: var(--accent-color);
-    color: white;
+    padding: 14px 40px;
+    background: linear-gradient(135deg, var(--accent-color) 0%, #ff9a00 100%);
+    color: var(--white);
     text-decoration: none;
-    border-radius: 50px;
+    border-radius: 2px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: var(--transition);
-    box-shadow: var(--shadow);
+    letter-spacing: 2px;
+    transition: all 0.3s var(--transition);
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(253, 187, 45, 0.3);
 }
 
 .btn-premium:hover {
-    transform: translateY(-5px);
-    background: white;
-    color: var(--primary-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    opacity: 0.9;
 }
 
-/* Rooms Grid */
-.section-title {
-    text-align: center;
-    padding: 80px 0 40px;
-}
-
-.section-title h2 {
-    font-size: 3rem;
-    color: var(--primary-color);
-}
-
+/* Room Grid: Laptop Continuity */
 .room-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
-    padding: 0 10%;
-    margin-bottom: 80px;
+    grid-template-columns: repeat(3, 1fr);
+    /* Force 3 columns like laptop */
+    gap: 20px;
+    padding: 0 5% 100px;
 }
 
 .room-card {
-    background: white;
-    border-radius: 15px;
+    background: var(--white);
     overflow: hidden;
     box-shadow: var(--shadow);
-    transition: var(--transition);
+    transition: transform 0.4s var(--transition), box-shadow 0.4s;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.03);
 }
 
-.room-card:hover {
-    transform: scale(1.02);
+.room-img-wrapper {
+    overflow: hidden;
+    height: 200px;
 }
 
 .room-img {
-    height: 250px;
+    height: 100%;
+    width: 100%;
     background-size: cover;
     background-position: center;
+    transition: transform 0.6s var(--transition);
 }
 
 .room-info {
-    padding: 25px;
+    padding: 20px;
+    background: linear-gradient(to bottom, #ffffff, #fcfcfc);
 }
 
 .room-price {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: var(--secondary-color);
+    color: var(--primary-color);
     margin: 10px 0;
 }
 
-/* Animations */
+/* Laptop Feel on Mobile (Scaling down instead of stacking) */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+    .room-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns on smaller screens to avoid tiny boxes */
+        gap: 15px;
+    }
+
+    .room-info h3 {
+        font-size: 1rem;
+    }
+
+    .room-img-wrapper {
+        height: 150px;
+    }
+
+    .nav-brand {
+        font-size: 1rem;
+    }
+
+    .nav-links {
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .room-grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* Keep it side-by-side even on very small screens */
+    }
+}
+
+/* Animations Keyframes */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(40px);
     }
 
     to {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Form Styles */
+.form-input {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    background: #fdfdfd;
+    transition: border-color 0.3s;
+    border-radius: 4px;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+/* Smooth Scroll */
+html {
+    scroll-behavior: smooth;
 }

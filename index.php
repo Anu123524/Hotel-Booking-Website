@@ -1,59 +1,78 @@
 <?php
-
 require_once 'config/database.php';
+session_start();
+
+// Guest access enabled - no longer redirecting to login
+
 require_once 'includes/header.php';
 
 ?>
 
-<div class="hero">
-    <h1>Your Sanctuary of Serenity</h1>
-    <p>Discover a world where luxury meets nature. From golden sunsets to silver service, every moment at Grand Vista is a masterpiece.</p>
-    <a href="rooms.php" class="btn-premium">Explore our Suites</a>
-</div>
+<main>
+    <section class="hero">
+        <h1>Grand Vista Sanctuary</h1>
+        <p>Experience the epitome of luxury tailored just for you. From serene suites to world-class service, discover your heaven in our haven.</p>
+        <a href="rooms.php" class="btn-premium">View Our Suites</a>
+    </section>
 
-<section class="section-title">
-    <h2>Exceptional Accommodations</h2>
-    <p>Curated spaces designed for ultimate comfort and sophistication.</p>
-</section>
+    <section class="section-title reveal">
+        <h2>Exquisite Stays</h2>
+        <p>Handpicked accommodations featuring stunning views and curated comfort.</p>
+    </section>
 
-<div class="room-grid">
-    <?php
+    <div class="room-grid reveal">
+        <?php
 $stmt = $pdo->query("SELECT * FROM rooms LIMIT 3");
 while ($room = $stmt->fetch()):
 ?>
-    <div class="room-card">
-        <div class="room-img" style="background-image: url('images/rooms/<?php echo $room['image']; ?>');"></div>
-        <div class="room-info">
-            <span style="color: #666; font-size: 0.8rem; text-transform: uppercase;"><?php echo $room['type']; ?></span>
-            <h3 style="margin: 5px 0;"><?php echo $room['name']; ?></h3>
-            <p style="font-size: 0.9rem; color: #555;"><?php echo substr($room['description'], 0, 100) . '...'; ?></p>
-            <div class="room-price">$<?php echo $room['price']; ?> <span style="font-size: 0.8rem; font-weight: 400; color: #999;">/ night</span></div>
-            <a href="room-details.php?id=<?php echo $room['id']; ?>" class="btn-premium" style="display: block; text-align: center; padding: 10px; font-size: 0.8rem;">View Details</a>
-        </div>
-    </div>
-    <?php
+        <article class="room-card">
+            <div class="room-img-wrapper">
+                <div class="room-img" style="background-image: url('images/rooms/<?php echo $room['image']; ?>');"></div>
+            </div>
+            <div class="room-info">
+                <small style="color: var(--accent-color); letter-spacing: 1px; font-weight: 700; text-transform: uppercase;"><?php echo $room['type']; ?></small>
+                <h3 style="margin: 10px 0; font-size: 1.4rem;"><?php echo $room['name']; ?></h3>
+                <p style="font-size: 0.9rem; color: #666;"><?php echo substr($room['description'], 0, 110) . '...'; ?></p>
+                <div class="room-price">₹<?php echo number_format($room['price'] * 80, 0); ?> <span style="font-size: 0.8rem; color: #999; font-weight: 400;">/ night</span></div>
+                <a href="rooms.php" class="btn-premium" style="display: block; text-align: center; padding: 12px; margin-top: 15px; font-size: 0.8rem;">Reserve Experience</a>
+            </div>
+        </article>
+        <?php
 endwhile; ?>
-</div>
+    </div>
 
-<section style="background: #fff; padding: 100px 10%; display: flex; align-items: center; gap: 50px;">
-    <div style="flex: 1;">
-        <img src="images/hero.jpg" alt="Hotel Interior" style="width: 100%; border-radius: 20px; box-shadow: var(--shadow);">
-    </div>
-    <div style="flex: 1;">
-        <h2 style="font-size: 2.5rem; color: var(--primary-color); margin-bottom: 20px;">Unparalleled Excellence</h2>
-        <p style="margin-bottom: 30px; font-size: 1.1rem; color: #666;">At Grand Vista, we believe in the art of hospitality. Our dedicated staff is committed to anticipating your every need, ensuring your stay is nothing short of extraordinary.</p>
-        <ul style="list-style: none;">
-            <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
-                <span style="color: var(--accent-color); font-weight: bold;">✓</span> 24/7 Personalized Butler Service
-            </li>
-            <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
-                <span style="color: var(--accent-color); font-weight: bold;">✓</span> Award-winning Coastal Dining
-            </li>
-            <li style="margin-bottom: 10px; display: flex; align-items: center; gap: 10px;">
-                <span style="color: var(--accent-color); font-weight: bold;">✓</span> Private Beach and Infinity Pools
-            </li>
-        </ul>
-    </div>
-</section>
+    <section style="background: var(--white); padding: 120px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;" class="reveal">
+        <div>
+            <img src="images/hero.jpg" alt="Luxury Interior" style="width: 100%; border-radius: 4px; box-shadow: var(--shadow);">
+        </div>
+        <div>
+            <h2 style="font-size: 2.8rem; color: var(--primary-color); margin-bottom: 25px;">The Gold Standard</h2>
+            <p style="margin-bottom: 35px; font-size: 1.1rem; color: #555; font-weight: 300;">We redefine the boundaries of luxury, creating an atmosphere that is both grand and intimate. Our legacy is built on the memories of our guests.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="padding: 20px; border: 1px solid #f0f0f0;">
+                    <h4 style="color: var(--accent-color); margin-bottom: 5px;">24hr Butler</h4>
+                    <p style="font-size: 0.8rem; color: #888;">Dedicated to your comfort at all times.</p>
+                </div>
+                <div style="padding: 20px; border: 1px solid #f0f0f0;">
+                    <h4 style="color: var(--accent-color); margin-bottom: 5px;">Sea View</h4>
+                    <p style="font-size: 0.8rem; color: #888;">Panoramic views of the infinite blue.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script>
+    const reveals = document.querySelectorAll('.reveal');
+    const options = { threshold: 0.15 };
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, options);
+    reveals.forEach(reveal => observer.observe(reveal));
+</script>
 
 <?php require_once 'includes/footer.php'; ?>
