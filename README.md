@@ -1,10 +1,10 @@
-# 🏨 Grand Vista Hotel Booking System
+# Grand Vista Hotel Booking System
 
-I'm excited to share a full-stack project I've been building recently: **Grand Vista Hotel**! ✨
+I'm excited to share a full-stack project I've been building recently: **Grand Vista Hotel**! 
 
 I wanted to challenge myself to build a complete, end-to-end web application that handles both the customer-facing experience and the backend administrative operations smoothly.
 
-## 📸 Application Showcase
+## Application Showcase
 
 Here is a glimpse of the application in action:
 
@@ -19,28 +19,28 @@ Here is a glimpse of the application in action:
   <img src="images/showcase/screenshot_4.png" width="90%" alt="Admin Dashboard">
 </p>
 
-## 🌟 Key Features
+## Key Features
 
-✅ **Secure, Gated Booking Flow:**  
+**Secure, Gated Booking Flow:**  
 Implemented an authentication system where users must register and log in before they can browse available rooms or make a reservation.
 
-✅ **Comprehensive Admin Dashboard:**  
+**Comprehensive Admin Dashboard:**  
 Built a centralized, secure hub for administrators to manage room inventory, update the gallery, and track user data without navigating complex menus.
 
-✅ **Dynamic Status Tracking:**  
+**Dynamic Status Tracking:**  
 Engineered the database and UI to reflect real-time changes, including custom visual color-coding (like auto-highlighting cancelled bookings in red) for quick admin readability.
 
-✅ **Custom Backend APIs:**  
+**Custom Backend APIs:**  
 Wrote secure PHP scripts to handle asynchronous requests, cleanly separating the frontend from the server logic.
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Frontend:** HTML5, CSS3, Vanilla JavaScript
 - **Backend:** PHP
 - **Database:** MySQL
 - **Architecture:** Custom MVC-inspired structure with standalone asynchronous API endpoints.
 
-## 💡 The Challenge Overcome
+## The Challenge Overcome
 One of the best learning curves on this project was managing the application state between the frontend UI and the MySQL database to ensure data consistency for both regular users and admins. Handling real-time capacity updates and color-coded status management was a challenging but rewarding puzzle!
 
 ---
