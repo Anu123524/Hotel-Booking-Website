@@ -23,7 +23,7 @@ require_once 'includes/header.php';
                 </div>
                 <div>
                     <h4 style="margin-bottom: 5px;">Location</h4>
-                    <p style="color: #888; font-size: 0.9rem;">123 Vista Marine Drive, Goa, India 403001</p>
+                    <p style="color: #888; font-size: 0.9rem;">Surathkal, Mangalore, Karnataka 575014</p>
                 </div>
             </div>
 
@@ -33,7 +33,7 @@ require_once 'includes/header.php';
                 </div>
                 <div>
                     <h4 style="margin-bottom: 5px;">Phone</h4>
-                    <p style="color: #888; font-size: 0.9rem;">+91 98765 43210</p>
+                    <p style="color: #888; font-size: 0.9rem;">+91 94812 34567</p>
                 </div>
             </div>
 
@@ -43,7 +43,7 @@ require_once 'includes/header.php';
                 </div>
                 <div>
                     <h4 style="margin-bottom: 5px;">Email</h4>
-                    <p style="color: #888; font-size: 0.9rem;">reservations@grandvista.com</p>
+                    <p style="color: #888; font-size: 0.9rem;">arjunshetty@gmail.com</p>
                 </div>
             </div>
         </section>
@@ -52,7 +52,7 @@ require_once 'includes/header.php';
             <div style="width: 100%; height: 450px; border-radius: 4px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #eee;">
                 <!-- Embed Google Maps -->
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d123118.42398579733!2d73.7334149!3d15.4909118!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bbfc1d746503b87%3A0xc6ca919f2a03cf6a!2sGoa!5e0!3m2!1sen!2sin!4v1709115000000!5m2!1sen!2sin" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15545.92244247506!2d74.7816174!3d13.0039755!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a092b3f114f%3A0xc319196d4fb07842!2sSurathkal%2C%20Mangalore%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1709216000000!5m2!1sen!2sin" 
                     width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
             </div>

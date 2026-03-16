@@ -15,32 +15,6 @@ require_once 'includes/header.php';
         <a href="rooms.php" class="btn-premium">View Our Suites</a>
     </section>
 
-    <section class="section-title reveal">
-        <h2>Exquisite Stays</h2>
-        <p>Handpicked accommodations featuring stunning views and curated comfort.</p>
-    </section>
-
-    <div class="room-grid reveal">
-        <?php
-$stmt = $pdo->query("SELECT * FROM rooms LIMIT 3");
-while ($room = $stmt->fetch()):
-?>
-        <article class="room-card">
-            <div class="room-img-wrapper">
-                <div class="room-img" style="background-image: url('images/rooms/<?php echo $room['image']; ?>');"></div>
-            </div>
-            <div class="room-info">
-                <small style="color: var(--accent-color); letter-spacing: 1px; font-weight: 700; text-transform: uppercase;"><?php echo $room['type']; ?></small>
-                <h3 style="margin: 10px 0; font-size: 1.4rem;"><?php echo $room['name']; ?></h3>
-                <p style="font-size: 0.9rem; color: #666;"><?php echo substr($room['description'], 0, 110) . '...'; ?></p>
-                <div class="room-price">₹<?php echo number_format($room['price'] * 80, 0); ?> <span style="font-size: 0.8rem; color: #999; font-weight: 400;">/ night</span></div>
-                <a href="rooms.php" class="btn-premium" style="display: block; text-align: center; padding: 12px; margin-top: 15px; font-size: 0.8rem;">Reserve Experience</a>
-            </div>
-        </article>
-        <?php
-endwhile; ?>
-    </div>
-
     <section style="background: var(--white); padding: 120px 10%; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;" class="reveal">
         <div>
             <img src="images/hero.jpg" alt="Luxury Interior" style="width: 100%; border-radius: 4px; box-shadow: var(--shadow);">

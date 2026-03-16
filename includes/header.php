@@ -16,11 +16,6 @@ if (session_status() === PHP_SESSION_NONE)
                 <li><a href="index.php">Home</a></li>
                 <li><a href="rooms.php">Rooms</a></li>
                 <li><a href="contact.php">Contact</a></li>
-                <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] == 'Admin'): ?>
-                    <li><a href="admin_dashboard.php" style="color: var(--accent-color);">Admin Panel</a></li>
-                    <li><a href="logout.php">Logout</a></li>
-                <?php
-endif; ?>
         </ul>
     </nav>
 

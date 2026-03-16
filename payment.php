@@ -20,28 +20,64 @@ $total_rupees = $days * $per_night * $booking['num_rooms'];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['pay_now'])) {
     $guest_name = $booking['guest_name'];
+    $guest_email = $booking['guest_email'];
+    $guest_contact = $booking['guest_contact'];
+    $guest_address = $booking['guest_address'];
     $guest_age = $booking['guest_age'];
     $num_adults = $booking['num_adults'];
     $num_children = $booking['num_children'];
     $num_rooms = $booking['num_rooms'];
     $check_in = $booking['check_in'];
     $check_out = $booking['check_out'];
+
+    // Backend Date Validation
+    $today = date('Y-m-d');
+    if ($check_in < $today) {
+        die("Check-in date cannot be in the past.");
+    }
+    if ($check_out <= $check_in) {
+        die("Check-out must be after check-in.");
+    }
+
     $user_id = $_SESSION['user_id'] ?? null;
     $total_price = $total_rupees;
     $payment_method = $_POST['payment_method'];
 
-    $stmt = $pdo->prepare("INSERT INTO bookings (user_id, guest_name, guest_age, room_id, check_in, check_out, num_adults, num_children, num_rooms, total_price, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Confirmed')");
-    $stmt->execute([$user_id, $guest_name, $guest_age, $room_id, $check_in, $check_out, $num_adults, $num_children, $num_rooms, $total_price]);
+    // Final Availability Check (Prevent double-booking)
+    $final_check = $pdo->prepare("SELECT COUNT(*) FROM bookings WHERE room_id = ? AND status != 'Cancelled' AND (
+            (check_in < ? AND check_out > ?) OR
+            (check_in < ? AND check_out > ?) OR
+            (check_in >= ? AND check_out <= ?)
+        )");
+    $final_check->execute([$room_id, $check_out, $check_in, $check_out, $check_in, $check_in, $check_out]);
+    if ($final_check->fetchColumn() > 0) {
+        die("Fatal Error: The room was booked by someone else while you were processing. Please try again with different dates.");
+    }
+
+    // Anti-Spam Check: Limit active bookings per phone number
+    if ($payment_method == 'Cash on Delivery') {
+        $spam_check = $pdo->prepare("SELECT COUNT(*) FROM bookings WHERE guest_contact = ? AND status IN ('Confirmed', 'Checked In')");
+        $spam_check->execute([$guest_contact]);
+        if ($spam_check->fetchColumn() >= 1) {
+            die("Security Notice: You already have an active 'Pay at Hotel' reservation. Please fulfill your current booking before creating another, or use Online Payment.");
+        }
+    }
+
+    $_SESSION['last_booking_time'] = time();
+
+    $stmt = $pdo->prepare("INSERT INTO bookings (user_id, guest_name, guest_email, guest_contact, guest_address, guest_age, room_id, check_in, check_out, num_adults, num_children, num_rooms, total_price, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Confirmed')");
+    $stmt->execute([$user_id, $guest_name, $guest_email, $guest_contact, $guest_address, $guest_age, $room_id, $check_in, $check_out, $num_adults, $num_children, $num_rooms, $total_price]);
+    $booking_id = $pdo->lastInsertId();
 
     // Mock Email Confirmation
-    $to = "guest@example.com"; // In reality, we'd collect this
+    $to = $guest_email;
     $subject = "Your Grand Vista Sanctuary is Confirmed";
-    $message = "Hello $guest_name,\n\nYour reservation for ${room['name']} is confirmed for $days nights.\nTotal: ₹$total_price\nPayment Method: $payment_method\n\nWe look forward to welcoming you.";
-    $headers = "From: reservations@grandvista.com";
+    $message = "Hello $guest_name,\n\nYour reservation (ID: #$booking_id) for ${room['name']} is confirmed.\nTotal: ₹$total_price\n\nYou can manage your stay or change your arrival time here: http://grandvista.infinityfreeapp.com/success.php?booking_id=$booking_id";
+    $headers = "From: arjunshetty@gmail.com";
     @mail($to, $subject, $message, $headers);
 
     unset($_SESSION['temp_booking']);
-    header("Location: success.php?msg=success&guest=" . urlencode($guest_name));
+    header("Location: success.php?msg=success&guest=" . urlencode($guest_name) . "&booking_id=" . $booking_id);
     exit();
 }
 
