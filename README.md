@@ -1,47 +1,40 @@
 # Grand Vista Hotel Booking System
 
-I'm excited to share a full-stack project I've been building recently: **Grand Vista Hotel**! 
+A full-stack hotel booking and management application built with PHP and MySQL. The system is designed to handle both customer reservations and backend administrative operations.
 
-I wanted to challenge myself to build a complete, end-to-end web application that handles both the customer-facing experience and the backend administrative operations smoothly.
+## Architecture
 
-## Application Showcase
+- **Frontend:** HTML5, CSS3, Vanilla JavaScript
+- **Backend:** PHP
+- **Database:** MySQL
+- **Design Pattern:** Custom MVC-inspired structure with standalone asynchronous API endpoints.
 
-Here is a glimpse of the application in action:
+## Core Features
 
-### 1. Premium Customer Experience
+- **Authentication System:** Gated booking flow requiring user registration and login to view availability and make reservations.
+- **Admin Dashboard:** Centralized management hub for room inventory, gallery updates, and user data oversight.
+- **State Management:** Real-time database tracking with specialized UI indicators (e.g., color-coded status highlighting for cancelled or active bookings).
+- **Asynchronous APIs:** Standalone PHP endpoints supporting asynchronous frontend requests without full page reloads.
+
+## Application Screenshots
+
+### Customer View
 <p align="center">
   <img src="images/showcase/screenshot_home.png" width="45%" alt="Home Page">
   <img src="images/showcase/screenshot_rooms.png" width="45%" alt="Rooms Selection">
 </p>
 
-### 2. Comprehensive Admin Oversight
+### Admin View
 <p align="center">
   <img src="images/showcase/screenshot_4.png" width="90%" alt="Admin Dashboard">
 </p>
 
-## Key Features
+## Setup Instructions
 
-**Secure, Gated Booking Flow:**  
-Implemented an authentication system where users must register and log in before they can browse available rooms or make a reservation.
-
-**Comprehensive Admin Dashboard:**  
-Built a centralized, secure hub for administrators to manage room inventory, update the gallery, and track user data without navigating complex menus.
-
-**Dynamic Status Tracking:**  
-Engineered the database and UI to reflect real-time changes, including custom visual color-coding (like auto-highlighting cancelled bookings in red) for quick admin readability.
-
-**Custom Backend APIs:**  
-Wrote secure PHP scripts to handle asynchronous requests, cleanly separating the frontend from the server logic.
-
-## Tech Stack
-
-- **Frontend:** HTML5, CSS3, Vanilla JavaScript
-- **Backend:** PHP
-- **Database:** MySQL
-- **Architecture:** Custom MVC-inspired structure with standalone asynchronous API endpoints.
-
-## The Challenge Overcome
-One of the best learning curves on this project was managing the application state between the frontend UI and the MySQL database to ensure data consistency for both regular users and admins. Handling real-time capacity updates and color-coded status management was a challenging but rewarding puzzle!
+1. Clone the repository into your local web server environment (e.g., `htdocs` for XAMPP).
+2. Create a MySQL database and import the provided `.sql` schema file.
+3. Update `config.php` (or relevant database connection file) with your local database credentials.
+4. Launch the application via `localhost`.
 
 ---
-*Created by Anup Shet.*
+*Created by Anup Shet*
