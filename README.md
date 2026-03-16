@@ -4,16 +4,19 @@ I'm excited to share a full-stack project I've been building recently: **Grand V
 
 I wanted to challenge myself to build a complete, end-to-end web application that handles both the customer-facing experience and the backend administrative operations smoothly.
 
-## 📸 Application Screenshots
+## 📸 Application Showcase
 
 Here is a glimpse of the application in action:
 
+### 1. Premium Customer Experience
 <p align="center">
-  <img src="images/showcase/screenshot_2.png" width="45%" alt="Login/Home">
-  <img src="images/showcase/screenshot_3.png" width="45%" alt="Dashboard/Rooms">
+  <img src="images/showcase/screenshot_home.png" width="45%" alt="Home Page">
+  <img src="images/showcase/screenshot_rooms.png" width="45%" alt="Rooms Selection">
 </p>
+
+### 2. Comprehensive Admin Oversight
 <p align="center">
-  <img src="images/showcase/screenshot_4.png" width="90%" alt="Admin View">
+  <img src="images/showcase/screenshot_4.png" width="90%" alt="Admin Dashboard">
 </p>
 
 ## 🌟 Key Features
