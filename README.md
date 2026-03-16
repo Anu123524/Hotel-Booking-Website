@@ -4,10 +4,17 @@ I'm excited to share a full-stack project I've been building recently: **Grand V
 
 I wanted to challenge myself to build a complete, end-to-end web application that handles both the customer-facing experience and the backend administrative operations smoothly.
 
-## 🚀 Application Walkthrough
-Watch the demo below showcasing the homepage, secured user flow, and the custom admin dashboard!
+## 📸 Application Screenshots
 
-![Grand Vista Demo Walkthrough](images/grand_vista_demo.webp)
+Here is a glimpse of the application in action:
+
+<p align="center">
+  <img src="images/showcase/screenshot_2.png" width="45%" alt="Login/Home">
+  <img src="images/showcase/screenshot_3.png" width="45%" alt="Dashboard/Rooms">
+</p>
+<p align="center">
+  <img src="images/showcase/screenshot_4.png" width="90%" alt="Admin View">
+</p>
 
 ## 🌟 Key Features
 
